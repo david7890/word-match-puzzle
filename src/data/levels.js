@@ -25,6 +25,22 @@ const levels = {
       { id: 3, english: "yellow", spanish: "amarillo", meaning: "A bright color", sentenceEn: "The sun is yellow.", sentenceEs: "El sol es amarillo." },
       { id: 4, english: "green", spanish: "verde", meaning: "A nature color", sentenceEn: "The grass is green.", sentenceEs: "El césped es verde." }
     ],
+    "body-1": [
+      { id: 1, english: "head", spanish: "cabeza", meaning: "The top part of the body.", sentenceEn: "She touched her head with her hand.", sentenceEs: "Ella tocó su cabeza con la mano." },
+      { id: 2, english: "arm", spanish: "brazo", meaning: "The part from the shoulder to the hand.", sentenceEn: "He raised his arm.", sentenceEs: "Él levantó el brazo para saludar." },
+      { id: 3, english: "leg", spanish: "pierna", meaning: "The part from the hip to the foot.", sentenceEn: "My leg hurts after running.", sentenceEs: "Mi pierna duele después de correr." },
+      { id: 4, english: "hand", spanish: "mano", meaning: "The part at the end of the arm.", sentenceEn: "I write with my right hand.", sentenceEs: "Escribo con mi mano derecha." },
+      { id: 5, english: "foot", spanish: "pie", meaning: "The part at the end of the leg.", sentenceEn: "He washed his foot after walking.", sentenceEs: "Él lavó su pie después de caminar." }
+    ],
+  
+    // Nuevo nivel: Intermedio (Tiempo y Clima)
+    "weather-1": [
+      { id: 1, english: "rain", spanish: "lluvia", meaning: "Water falling from the sky.", sentenceEn: "The rain stopped in the afternoon.", sentenceEs: "La lluvia paró en la tarde." },
+      { id: 2, english: "sun", spanish: "sol", meaning: "The star that gives light and heat.", sentenceEn: "The sun shines brightly today.", sentenceEs: "El sol brilla intensamente hoy." },
+      { id: 3, english: "wind", spanish: "viento", meaning: "Moving air.", sentenceEn: "The wind blew the leaves away.", sentenceEs: "El viento sopló las hojas lejos." },
+      { id: 4, english: "cloud", spanish: "nube", meaning: "A mass of water vapor in the sky.", sentenceEn: "The sky is full of clouds.", sentenceEs: "El cielo está lleno de nubes." },
+      { id: 5, english: "storm", spanish: "tormenta", meaning: "A strong weather event with rain and wind.", sentenceEn: "We stayed inside during the storm.", sentenceEs: "Nos quedamos adentro durante la tormenta." }
+    ]
     // Agrega más categorías aquí (clothes, weather, etc.) siguiendo el mismo formato
   };
   
