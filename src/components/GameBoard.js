@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 
-const GameBoard = ({ levelWords, onHome }) => {
+const GameBoard = ({ levelWords, onHome, onLevelComplete }) => {
   const createCards = () => {
     const cardPairs = levelWords.flatMap(word => [
       { id: `${word.id}-en`, content: word.english, matchId: word.id },
@@ -29,7 +29,8 @@ const GameBoard = ({ levelWords, onHome }) => {
     if (newFlipped.length === 2) {
       const [first, second] = newFlipped;
       if (first.matchId === second.matchId) {
-        setMatchedCards([...matchedCards, first.id, second.id]);
+        const newMatched = [...matchedCards, first.id, second.id];
+        setMatchedCards(newMatched);
         setCurrentPair(levelWords.find(word => word.id === first.matchId));
         setFlippedCards([]);
         setTimeout(() => {
@@ -83,11 +84,19 @@ const GameBoard = ({ levelWords, onHome }) => {
         onClick={resetGame}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.3 }}
       >
         Reset Game
       </motion.button>
-      {modalOpen && <SentenceModal pair={currentPair} onClose={closeModal} />}
+      {modalOpen && (
+        <SentenceModal
+          pair={currentPair}
+          onClose={closeModal}
+          onComplete={onLevelComplete}
+          totalPairs={levelWords.length}
+          matchedPairs={matchedCards.length / 2}
+        />
+      )}
     </div>
   );
 };

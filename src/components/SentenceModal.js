@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const SentenceModal = ({ pair, onClose }) => {
+const SentenceModal = ({ pair, onClose, onComplete, totalPairs, matchedPairs }) => {
   const sentenceWords = pair.sentenceEn.split(' ');
   const [shuffledWords] = useState(() => 
     [...sentenceWords].sort(() => Math.random() - 0.5)
@@ -11,10 +11,21 @@ const SentenceModal = ({ pair, onClose }) => {
 
   const handleWordClick = (word) => {
     if (word === sentenceWords[currentStep]) {
-      setFormedSentence([...formedSentence, word]);
+      const newFormedSentence = [...formedSentence, word];
+      setFormedSentence(newFormedSentence);
       setCurrentStep(currentStep + 1);
       if (currentStep + 1 === sentenceWords.length) {
-        setTimeout(onClose, 1500);
+        // Última palabra de la frase completada
+        if (matchedPairs === totalPairs) {
+          // Si este es el último par del nivel, completar el nivel
+          setTimeout(() => {
+            onClose();
+            onComplete(); // Marcar nivel como completado
+          }, 1500);
+        } else {
+          // Si no es el último par, solo cerrar el modal
+          setTimeout(onClose, 1500);
+        }
       }
     }
   };

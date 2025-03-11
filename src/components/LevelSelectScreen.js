@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import levels from '../data/levels';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-const LevelSelectScreen = ({ onSelect }) => {
+const LevelSelectScreen = ({ onSelect, completedLevels }) => {
   const levelNames = Object.keys(levels);
   const [instructionsOpen, setInstructionsOpen] = useState(false);
 
@@ -18,7 +18,7 @@ const LevelSelectScreen = ({ onSelect }) => {
   return (
     <div className="flex flex-col items-center w-full">
       <motion.button
-        className="w-10 h-10 bg-gray-300 text-gray-800 rounded-full flex items-center justify-center text-base sm:text-lg cursor-pointer mb-2 sm:mb-4"
+        className="w-8 h-8 bg-gray-300 text-gray-800 rounded-full flex items-center justify-center text-base sm:text-lg cursor-pointer mb-2 sm:mb-4"
         onClick={() => setInstructionsOpen(true)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -36,10 +36,15 @@ const LevelSelectScreen = ({ onSelect }) => {
             transition={{ duration: 0.3, delay: levelNames.indexOf(level) * 0.1 }}
           >
             <button
-              className="w-40 sm:w-48 h-10 sm:h-12 bg-primary text-white rounded-lg text-base sm:text-lg cursor-pointer hover:bg-primary-hover transition duration-200"
+              className="w-40 sm:w-48 h-10 sm:h-12 bg-primary text-white rounded-lg text-base sm:text-lg cursor-pointer hover:bg-primary-hover transition duration-200 flex items-center justify-center gap-2"
               onClick={() => onSelect(level)}
             >
-              {formatLevelName(level)}
+              <span>{formatLevelName(level)}</span>
+              {completedLevels.includes(level) && (
+                <span className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <FontAwesomeIcon icon={faCheck} className="text-white text-xs" />
+                </span>
+              )}
             </button>
           </motion.li>
         ))}
