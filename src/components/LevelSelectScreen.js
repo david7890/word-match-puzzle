@@ -26,7 +26,14 @@ const LevelSelectScreen = ({ onSelect, completedLevels }) => {
       >
         <FontAwesomeIcon icon={faQuestion} />
       </motion.button>
-      <h1 className="text-2xl sm:text-3xl text-gray-800 mb-4 sm:mb-6">Choose a Level</h1>
+      <motion.h1
+        className="text-3xl sm:text-4xl font-bold text-gray-900 bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent mb-6 sm:mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        Choose a Level
+      </motion.h1>
       <ul className="flex flex-col gap-3 sm:gap-4">
         {levelNames.map(level => (
           <motion.li

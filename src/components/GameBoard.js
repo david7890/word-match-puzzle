@@ -67,7 +67,13 @@ const GameBoard = ({ levelWords, onHome, onLevelComplete }) => {
           <FontAwesomeIcon icon={faHouse} />
         </motion.button>
       </div>
-      <h2 className="text-xl sm:text-2xl text-gray-800 mb-4 sm:mb-5">Match the Words!</h2>
+      <motion.h2
+        className="text-2xl sm:text-3xl font-semibold text-indigo-700 bg-indigo-100 px-4 py-2 rounded-lg mb-4 sm:mb-5 inline-block"
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        Match the Words!
+      </motion.h2>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 justify-center">
         {cards.map(card => (
           <Card
