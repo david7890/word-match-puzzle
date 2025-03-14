@@ -27,7 +27,6 @@ const IntroScreen = ({ level, onStart }) => {
       >
         <h2 className="text-2xl sm:text-4xl text-gray-800 mb-2">{currentWord.english}</h2>
         <p className="italic text-sm sm:text-base text-gray-600 mb-2">{currentWord.spanish}</p>
-        <p className="text-xs sm:text-sm text-gray-500 mb-2">{currentWord.meaning}</p>
         <p className="text-sm sm:text-base text-gray-700 mb-2">{currentWord.sentenceEn}</p>
         <p className="italic text-xs sm:text-sm text-gray-600">{currentWord.sentenceEs}</p>
       </motion.div>

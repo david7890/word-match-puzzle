@@ -36,9 +36,23 @@ const App = () => {
     }, 500); // 500ms para que el modal se cierre antes de cambiar pantalla
   };
 
+  const handleHeaderClick = () => {
+    if (currentScreen !== 'game') { // Solo cambia si no estás en GameBoard
+      setCurrentScreen('levelSelect');
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center p-4 sm:p-5">
-      <h1 className="text-2xl sm:text-3xl md:text-4xl text-gray-800 mb-4 sm:mb-6">Word Match Puzzle</h1>
+      <header className="mb-6 sm:mb-8 cursor-pointer" onClick={handleHeaderClick}>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight flex items-center gap-1">
+          <span className="bg-indigo-600 text-white px-2 py-1 rounded-md">W</span>
+          ord
+          <span className="bg-indigo-600 text-white px-2 py-1 rounded-md">M</span>
+          atch
+        </h1>
+      </header>
+      
       <div className="w-full max-w-2xl flex flex-col items-center">
         {currentScreen === 'levelSelect' && (
           <LevelSelectScreen onSelect={handleLevelSelect} completedLevels={completedLevels} />
