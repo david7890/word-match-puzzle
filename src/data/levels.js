@@ -26,7 +26,7 @@ const levels = {
       { id: 4, english: "green", spanish: "verde", meaning: "A nature color", sentenceEn: "The grass is green.", sentenceEs: "El césped es verde." }
     ],
     "body-1": [
-      { id: 1, english: "head", spanish: "cabeza", meaning: "The top part of the body.", sentenceEn: "She touched her head with her hand.", sentenceEs: "Ella tocó su cabeza con la mano." },
+      { id: 1, english: "head", spanish: "cabeza", meaning: "The top part of the body.", sentenceEn: "She touched her head.", sentenceEs: "Ella tocó su cabeza con la mano." },
       { id: 2, english: "arm", spanish: "brazo", meaning: "The part from the shoulder to the hand.", sentenceEn: "He raised his arm.", sentenceEs: "Él levantó el brazo para saludar." },
       { id: 3, english: "leg", spanish: "pierna", meaning: "The part from the hip to the foot.", sentenceEn: "My leg hurts after running.", sentenceEs: "Mi pierna duele después de correr." },
       { id: 4, english: "hand", spanish: "mano", meaning: "The part at the end of the arm.", sentenceEn: "I write with my right hand.", sentenceEs: "Escribo con mi mano derecha." },
