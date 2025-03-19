@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import levels from '../data/levels';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion, faCheck, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+
 
 const LevelSelectScreen = ({ onSelect, completedLevels }) => {
-  const levelNames = Object.keys(levels);
   const [instructionsOpen, setInstructionsOpen] = useState(false);
+  const [openSections, setOpenSections] = useState({
+    basic: true,  // Sección básica abierta por defecto
+    medium: true,
+    advanced: false,
+  });
 
   const formatLevelName = (level) => {
     const [category, number] = level.split('-');
@@ -14,6 +19,21 @@ const LevelSelectScreen = ({ onSelect, completedLevels }) => {
       ? `${category.charAt(0).toUpperCase() + category.slice(1)} - ${number}` 
       : category.charAt(0).toUpperCase() + category.slice(1);
   };
+
+  // Agrupar niveles por dificultad
+  const groupedLevels = {
+    basic: Object.keys(levels).filter(level => levels[level].difficulty === 'basic'),
+    medium: Object.keys(levels).filter(level => levels[level].difficulty === 'medium'),
+    advanced: Object.keys(levels).filter(level => levels[level].difficulty === 'advanced'),
+  };
+
+  const toggleSection = (difficulty) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [difficulty]: !prev[difficulty],
+    }));
+  };
+
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -34,28 +54,59 @@ const LevelSelectScreen = ({ onSelect, completedLevels }) => {
       >
         Choose a Level
       </motion.h1>
-      <ul className="flex flex-col gap-3 sm:gap-4">
-        {levelNames.map(level => (
-          <motion.li
-            key={level}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: levelNames.indexOf(level) * 0.1 }}
-          >
-            <button
-              className="w-40 sm:w-48 h-10 sm:h-12 bg-primary text-white rounded-lg text-base sm:text-lg cursor-pointer hover:bg-primary-hover transition duration-200 flex items-center justify-center gap-2"
-              onClick={() => onSelect(level)}
+      {/* Secciones de dificultad */}
+      <div className="w-full max-w-lg">
+        {['basic', 'medium', 'advanced'].map(difficulty => (
+          <div key={difficulty} className="mb-4">
+            <motion.button
+              className={`w-full py-3 px-4 text-left text-lg font-semibold rounded-lg flex justify-between items-center ${
+                difficulty === 'basic' ? 'bg-green-100 text-green-700' : 
+                difficulty === 'medium' ? 'bg-yellow-100 text-yellow-700' : 
+                'bg-red-100 text-red-700'
+              }`}
+              onClick={() => toggleSection(difficulty)}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
             >
-              <span>{formatLevelName(level)}</span>
-              {completedLevels.includes(level) && (
-                <span className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                  <FontAwesomeIcon icon={faCheck} className="text-white text-xs" />
-                </span>
+              <span>{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Levels</span>
+              <FontAwesomeIcon icon={openSections[difficulty] ? faChevronUp : faChevronDown} />
+            </motion.button>
+
+            <AnimatePresence>
+              {openSections[difficulty] && (
+                <motion.ul
+                  className="flex flex-col gap-3 mt-2 items-center"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {groupedLevels[difficulty].map(level => (
+                    <motion.li
+                      key={level}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <button
+                        className="w-full sm:w-48 h-10 sm:h-12 bg-primary text-white rounded-lg text-base sm:text-lg cursor-pointer hover:bg-primary-hover transition duration-200 flex items-center justify-center gap-2"
+                        onClick={() => onSelect(level)}
+                      >
+                        <span>{formatLevelName(level)}</span>
+                        {completedLevels.includes(level) && (
+                          <span className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                            <FontAwesomeIcon icon={faCheck} className="text-white text-xs" />
+                          </span>
+                        )}
+                      </button>
+                    </motion.li>
+                  ))}
+                </motion.ul>
               )}
-            </button>
-          </motion.li>
+            </AnimatePresence>
+          </div>
         ))}
-      </ul>
+      </div>
 
       {/* Modal de instrucciones */}
       {instructionsOpen && (

@@ -6,7 +6,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const IntroScreen = ({ level, onStart }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const currentWords = levels[level];
+  const currentWords = level;
   const currentWord = currentWords[currentIndex];
 
   const handleNext = () => {

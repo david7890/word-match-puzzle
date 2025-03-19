@@ -57,10 +57,12 @@ const App = () => {
         {currentScreen === 'levelSelect' && (
           <LevelSelectScreen onSelect={handleLevelSelect} completedLevels={completedLevels} />
         )}
-        {currentScreen === 'intro' && <IntroScreen level={selectedLevel} onStart={handleStartGame} />}
+        {currentScreen === 'intro' && (
+          <IntroScreen level={levels[selectedLevel].data} onStart={handleStartGame} />
+        )}
         {currentScreen === 'game' && (
           <GameBoard
-            levelWords={levels[selectedLevel]}
+            levelWords={levels[selectedLevel].data}
             onHome={handleHome}
             onLevelComplete={() => handleLevelComplete(selectedLevel)}
           />
