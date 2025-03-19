@@ -74,16 +74,18 @@ const GameBoard = ({ levelWords, onHome, onLevelComplete }) => {
       >
         Match the Words!
       </motion.h2>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 justify-center">
-        {cards.map(card => (
-          <Card
-            key={card.id}
-            content={card.content}
-            isFlipped={flippedCards.some(c => c.id === card.id)}
-            isMatched={matchedCards.includes(card.id)}
-            onClick={() => handleCardClick(card)}
-          />
-        ))}
+      <div className="flex justify-center">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 w-full max-w-md">
+          {cards.map(card => (
+            <Card
+              key={card.id}
+              content={card.content}
+              isFlipped={flippedCards.some(c => c.id === card.id)}
+              isMatched={matchedCards.includes(card.id)}
+              onClick={() => handleCardClick(card)}
+            />
+          ))}
+        </div>
       </div>
       <motion.button
         className="w-20 sm:w-24 h-10 mt-4 sm:mt-5 text-sm sm:text-base bg-primary text-white rounded-lg cursor-pointer"

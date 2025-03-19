@@ -89,7 +89,7 @@ const LevelSelectScreen = ({ onSelect, completedLevels }) => {
                       transition={{ duration: 0.3 }}
                     >
                       <button
-                        className="w-full sm:w-48 h-10 sm:h-12 bg-primary text-white rounded-lg text-base sm:text-lg cursor-pointer hover:bg-primary-hover transition duration-200 flex items-center justify-center gap-2"
+                        className="w-40 sm:w-48 h-10 sm:h-12 bg-primary text-white rounded-lg text-base sm:text-lg cursor-pointer hover:bg-primary-hover transition duration-200 flex items-center justify-center gap-2 px-3 sm:px-4"
                         onClick={() => onSelect(level)}
                       >
                         <span>{formatLevelName(level)}</span>

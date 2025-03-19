@@ -58,7 +58,36 @@ const levels = {
       { id: 5, english: "storm", spanish: "tormenta", meaning: "A strong weather event with rain and wind.", sentenceEn: "We stayed inside during the storm.", sentenceEs: "Nos quedamos adentro durante la tormenta." }
       ],
     },
-    // Agrega más categorías aquí (clothes, weather, etc.) siguiendo el mismo formato
+    'travel-1': {
+    difficulty: 'advanced',
+    data: [
+      { id: 1, english: 'passport', spanish: 'pasaporte', sentenceEn: 'I forgot my passport at home.', sentenceEs: 'Olvidé mi pasaporte en casa.' },
+      { id: 2, english: 'luggage', spanish: 'equipaje', sentenceEn: 'My luggage is too heavy to carry.', sentenceEs: 'Mi equipaje es demasiado pesado para llevar.' },
+      { id: 3, english: 'itinerary', spanish: 'itinerario', sentenceEn: 'The itinerary includes three cities.', sentenceEs: 'El itinerario incluye tres ciudades.' },
+      { id: 4, english: 'boarding', spanish: 'embarque', sentenceEn: 'Boarding starts in ten minutes.', sentenceEs: 'El embarque comienza en diez minutos.' },
+      { id: 5, english: 'reservation', spanish: 'reserva', sentenceEn: 'I made a reservation for tomorrow.', sentenceEs: 'Hice una reserva para mañana.' },
+    ],
+  },
+  business: {
+    difficulty: 'advanced',
+    data: [
+      { id: 1, english: 'meeting', spanish: 'reunión', sentenceEn: 'The meeting starts at noon.', sentenceEs: 'La reunión comienza al mediodía.' },
+      { id: 2, english: 'contract', spanish: 'contrato', sentenceEn: 'We signed a contract yesterday.', sentenceEs: 'Firmamos un contrato ayer.' },
+      { id: 3, english: 'proposal', spanish: 'propuesta', sentenceEn: 'She presented a great proposal.', sentenceEs: 'Ella presentó una gran propuesta.' },
+      { id: 4, english: 'deadline', spanish: 'fecha límite', sentenceEn: 'The deadline is next week.', sentenceEs: 'La fecha límite es la próxima semana.' },
+      { id: 5, english: 'revenue', spanish: 'ingresos', sentenceEn: 'Our revenue increased this year.', sentenceEs: 'Nuestros ingresos aumentaron este año.' },
+    ],
+  },
+  technology: {
+    difficulty: 'advanced',
+    data: [
+      { id: 1, english: 'processor', spanish: 'procesador', sentenceEn: 'The processor runs very fast.', sentenceEs: 'El procesador corre muy rápido.' },
+      { id: 2, english: 'algorithm', spanish: 'algoritmo', sentenceEn: 'This algorithm is efficient.', sentenceEs: 'Este algoritmo es eficiente.' },
+      { id: 3, english: 'database', spanish: 'base de datos', sentenceEn: 'The database crashed again.', sentenceEs: 'La base de datos se cayó otra vez.' },
+      { id: 4, english: 'network', spanish: 'red', sentenceEn: 'The network is down today.', sentenceEs: 'La red está caída hoy.' },
+      { id: 5, english: 'interface', spanish: 'interfaz', sentenceEn: 'The interface is user-friendly.', sentenceEs: 'La interfaz es fácil de usar.' },
+    ],
+  },
   };
   
   export default levels;
