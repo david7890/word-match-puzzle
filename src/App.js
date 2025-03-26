@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import LevelSelectScreen from './components/LevelSelectScreen';
 import IntroScreen from './components/IntroScreen';
 import GameBoard from './components/GameBoard';
+import HangmanGame from './components/HangmanGame';
 import levels from './data/levels';
 
 const App = () => {
   const [currentScreen, setCurrentScreen] = useState('levelSelect');
   const [selectedLevel, setSelectedLevel] = useState(null);
+  const [selectedHangmanWords, setSelectedHangmanWords] = useState([]);
   const [completedLevels, setCompletedLevels] = useState(() => {
     return JSON.parse(localStorage.getItem('completedLevels')) || [];
   });
@@ -15,6 +17,11 @@ const App = () => {
   const handleLevelSelect = (level) => {
     setSelectedLevel(level);
     setCurrentScreen('intro');
+  };
+
+  const handleHangmanSelect = (difficulty, words) => {
+    setSelectedHangmanWords(words);
+    setCurrentScreen('hangman');
   };
 
   const handleStartGame = () => {
@@ -55,7 +62,11 @@ const App = () => {
       
       <div className="w-full max-w-2xl flex flex-col items-center">
         {currentScreen === 'levelSelect' && (
-          <LevelSelectScreen onSelect={handleLevelSelect} completedLevels={completedLevels} />
+          <LevelSelectScreen 
+            onSelect={handleLevelSelect}
+            onHangmanSelect={handleHangmanSelect} 
+            completedLevels={completedLevels} 
+          />
         )}
         {currentScreen === 'intro' && (
           <IntroScreen level={levels[selectedLevel].data} onStart={handleStartGame} />
@@ -66,6 +77,9 @@ const App = () => {
             onHome={handleHome}
             onLevelComplete={() => handleLevelComplete(selectedLevel)}
           />
+        )}
+        {currentScreen === 'hangman' && (
+          <HangmanGame words={selectedHangmanWords} onHome={handleHome} />
         )}
       </div>
     </div>

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import levels from '../data/levels';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion, faCheck, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion, faCheck, faChevronDown, faChevronUp, faSkull } from '@fortawesome/free-solid-svg-icons';
 
 
-const LevelSelectScreen = ({ onSelect, completedLevels }) => {
+const LevelSelectScreen = ({ onSelect, onHangmanSelect, completedLevels }) => {
   const [instructionsOpen, setInstructionsOpen] = useState(false);
   const [openSections, setOpenSections] = useState({
     basic: true,  // Sección básica abierta por defecto
@@ -32,6 +32,11 @@ const LevelSelectScreen = ({ onSelect, completedLevels }) => {
       ...prev,
       [difficulty]: !prev[difficulty],
     }));
+  };
+
+  const handleHangmanSelect = (difficulty) => {
+    const words = groupedLevels[difficulty].flatMap(level => levels[level].data.map(word => word.english));
+    onHangmanSelect(difficulty, words);
   };
 
 
@@ -81,6 +86,20 @@ const LevelSelectScreen = ({ onSelect, completedLevels }) => {
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
                 >
+                  {/* Botón de Hangman como primer elemento */}
+                  <motion.li
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                   <button
+                      className="w-40 sm:w-48 h-10 sm:h-12 bg-indigo-600 text-white rounded-lg text-base sm:text-lg cursor-pointer hover:bg-indigo-700 transition duration-200 flex items-center justify-center gap-2 px-3 sm:px-4"
+                      onClick={() => handleHangmanSelect(difficulty)}
+                    >
+                      <FontAwesomeIcon icon={faSkull} />
+                      <span>Play Hangman</span>
+                    </button> 
+                  </motion.li>
                   {groupedLevels[difficulty].map(level => (
                     <motion.li
                       key={level}
